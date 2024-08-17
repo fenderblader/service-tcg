@@ -18,6 +18,11 @@ services:
         - backend-net
       depends_on:
         - ocr
+      environment:
+        - REQUEST_OCR_IP="http://ocr:60000"
+        - REQUEST_OCR_PORT="60000"
+        - IMAGE_COMPARE_IP="0.0.0.0"
+        - IMAGE_COMPARE_PORT="60010"
   
   ocr:
     build: ./service-ocr
@@ -25,6 +30,9 @@ services:
     networks:
       - frontend-net
       - backend-net
+    environment:
+      - OCR_IP="0.0.0.0"
+      - OCR_PORT="60000"
 
   test-container:
     image: alpine
